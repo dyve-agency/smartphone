@@ -37,6 +37,12 @@ void Login::createUI()
 
 	Screen::setMainWidget(mMainLayout);
 
+	mLogo = new Image();
+	mLogo->setImage(ZEITKIT_LOGO);
+	mLogo->fillSpaceHorizontally();
+	mLogo->setScaleMode(IMAGE_SCALE_PRESERVE_ASPECT);
+	mMainLayout->addChild(mLogo);
+
 	mInstructions = new Label();
 	mInstructions->fillSpaceHorizontally();
 	mInstructions->wrapContentVertically();

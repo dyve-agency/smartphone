@@ -4,6 +4,7 @@
 #include <maapi.h>
 #include <MAUtil/util.h>
 #include <NativeUI/Widgets.h>
+#include <MAHeaders.h>
 
 namespace Manager
 {
@@ -18,6 +19,7 @@ namespace View
 			Manager::Login* manager;
 
 			NativeUI::VerticalLayout* mMainLayout;
+			NativeUI::Image* mLogo;
 			NativeUI::Label* mInstructions;
 			NativeUI::Label* mStatus;
 			NativeUI::EditBox* mMailBox;
