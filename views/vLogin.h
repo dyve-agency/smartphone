@@ -5,11 +5,18 @@
 #include <MAUtil/util.h>
 #include <NativeUI/Widgets.h>
 
+namespace Manager
+{
+	class Login;
+}
+
 namespace View
 {
 	class Login : public NativeUI::Screen, public NativeUI::ButtonListener, public NativeUI::EditBoxListener
 	{
 		private:
+			Manager::Login* manager;
+
 			NativeUI::VerticalLayout* mMainLayout;
 			NativeUI::Label* mInstructions;
 			NativeUI::EditBox* mMailBox;
@@ -26,7 +33,7 @@ namespace View
 			virtual void editBoxReturn(NativeUI::EditBox* editBox);
 
 		public:
-			Login();
+			Login(Manager::Login* manager);
 			~Login();
 	};
 }

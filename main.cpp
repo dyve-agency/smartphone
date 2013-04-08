@@ -3,7 +3,7 @@
 #include <MAUtil/Moblet.h>
 #include <NativeUI/Widgets.h>
 
-#include "views/login.h"
+#include "manager.h"
 
 using namespace MAUtil;
 using namespace NativeUI;
@@ -11,25 +11,22 @@ using namespace NativeUI;
 class ZeitkitTimer : public Moblet
 {
 	private:
-		View::Login* mLoginScreen;
+		Manager::Login mLogin;
 
 	public:
 		ZeitkitTimer()
 		{
-			mLoginScreen = new View::Login();
-			mLoginScreen->show();
+			mLogin.view->show();
 		}
 
 		virtual ~ZeitkitTimer()
 		{
-			delete mLoginScreen;
+
 		}
 
 		void ZeitkitTimer::closeEvent() GCCATTRIB(noreturn)
 		{
-			delete mLoginScreen;
-			mLoginScreen = NULL;
-
+			mLogin.free();
 			close();
 		}
 

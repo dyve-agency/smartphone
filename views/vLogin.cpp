@@ -1,4 +1,5 @@
-#include "login.h"
+#include "vLogin.h"
+#include "../manager.h"
 
 using namespace View;
 using namespace NativeUI;
@@ -7,7 +8,7 @@ unsigned int Login::mMainLayoutBgColor = 0x00EC5A47;
 const char* Login::mInstructionsText = "Welcome to Zeitkit worklog tracker! Enter your login details below. If you don't have an account with us, our system will create one for you.";
 const char* Login::mSubmitButtonLabel = "Submit";
 
-Login::Login() : Screen()
+Login::Login(Manager::Login* manager) : manager(manager), Screen()
 {
 	createUI();
 
@@ -65,6 +66,8 @@ void Login::buttonClicked(Widget* button)
 	{
 		mMailBox->hideKeyboard();
 		mPasswordBox->hideKeyboard();
+
+		manager->controller->actionSubmit();
 	}
 }
 
@@ -72,4 +75,6 @@ void Login::editBoxReturn(EditBox* editBox)
 {
 	mMailBox->hideKeyboard();
 	mPasswordBox->hideKeyboard();
+
+	manager->controller->actionSubmit();
 }
