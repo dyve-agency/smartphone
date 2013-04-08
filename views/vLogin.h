@@ -19,13 +19,18 @@ namespace View
 
 			NativeUI::VerticalLayout* mMainLayout;
 			NativeUI::Label* mInstructions;
+			NativeUI::Label* mStatus;
 			NativeUI::EditBox* mMailBox;
 			NativeUI::EditBox* mPasswordBox;
 			NativeUI::Button* mSubmitButton;
 
-			static unsigned int mMainLayoutBgColor;
+			static const unsigned int mMainLayoutBgColor;
 			static const char* mInstructionsText;
+			static const char* mStatusText;
+			static const unsigned int mStatusFontColor;
 			static const char* mSubmitButtonLabel;
+			static const char* mSubmitButtonErrorMissingMail;
+			static const char* mSubmitButtonErrorMissingPwd;
 
 			void createUI();
 

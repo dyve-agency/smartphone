@@ -20,7 +20,7 @@ namespace Controller
 			Login(Manager::Login* manager);
 			~Login();
 
-			void actionSubmit();
+			void actionSubmit(const MAUtil::String& mail, const MAUtil::String& pwd);
 	};
 }
 

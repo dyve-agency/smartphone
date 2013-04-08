@@ -12,7 +12,7 @@ Login::~Login()
 
 }
 
-void Login::actionSubmit()
+void Login::actionSubmit(const MAUtil::String& mail, const MAUtil::String& pwd)
 {
 
 }

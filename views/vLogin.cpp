@@ -4,9 +4,13 @@
 using namespace View;
 using namespace NativeUI;
 
-unsigned int Login::mMainLayoutBgColor = 0x00EC5A47;
+const unsigned int Login::mMainLayoutBgColor = 0x00EC5A47;
 const char* Login::mInstructionsText = "Welcome to Zeitkit worklog tracker! Enter your login details below. If you don't have an account with us, our system will create one for you.";
+const char* Login::mStatusText = "";
+const unsigned int Login::mStatusFontColor = 0x00205081;
 const char* Login::mSubmitButtonLabel = "Submit";
+const char* Login::mSubmitButtonErrorMissingMail = "Please enter your e-mail address!";
+const char* Login::mSubmitButtonErrorMissingPwd = "Please enter your password!";
 
 Login::Login(Manager::Login* manager) : manager(manager), Screen()
 {
@@ -39,6 +43,13 @@ void Login::createUI()
 	mInstructions->setText(mInstructionsText);
 	mMainLayout->addChild(mInstructions);
 
+	mStatus = new Label();
+	mStatus->fillSpaceHorizontally();
+	mStatus->wrapContentVertically();
+	mStatus->setText(mStatusText);
+	mStatus->setFontColor(mStatusFontColor);
+	mMainLayout->addChild(mStatus);
+
 	mMailBox = new EditBox();
 	mMailBox->fillSpaceHorizontally();
 	mMailBox->wrapContentVertically();
@@ -64,10 +75,25 @@ void Login::buttonClicked(Widget* button)
 {
 	if (button == mSubmitButton)
 	{
+		MAUtil::String mail = mMailBox->getText();
+		MAUtil::String pwd = mPasswordBox->getText();
+
+		if (!mail.length())
+		{
+			mStatus->setText(mSubmitButtonErrorMissingMail);
+			return;
+		}
+
+		if (!pwd.length())
+		{
+			mStatus->setText(mSubmitButtonErrorMissingPwd);
+			return;
+		}
+
+		mStatus->setText("");
 		mMailBox->hideKeyboard();
 		mPasswordBox->hideKeyboard();
-
-		manager->controller->actionSubmit();
+		manager->controller->actionSubmit(mail, pwd);
 	}
 }
 
@@ -75,6 +101,5 @@ void Login::editBoxReturn(EditBox* editBox)
 {
 	mMailBox->hideKeyboard();
 	mPasswordBox->hideKeyboard();
-
-	manager->controller->actionSubmit();
 }
+
