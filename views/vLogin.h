@@ -28,8 +28,11 @@ namespace View
 
 			static const unsigned int mMainLayoutBgColor;
 			static const char* mInstructionsText;
+			static const unsigned int mInstructionsFontColor;
 			static const char* mStatusText;
 			static const unsigned int mStatusFontColor;
+			static const char* mMailBoxPlaceholder;
+			static const char* mPasswordBoxPlaceholder;
 			static const char* mSubmitButtonLabel;
 			static const char* mSubmitButtonErrorMissingMail;
 			static const char* mSubmitButtonErrorMissingPwd;

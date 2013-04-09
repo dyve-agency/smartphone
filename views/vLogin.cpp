@@ -6,9 +6,12 @@ using namespace NativeUI;
 
 const unsigned int Login::mMainLayoutBgColor = 0x00EC5A47;
 const char* Login::mInstructionsText = "Welcome to Zeitkit worklog tracker! Enter your login details below. If you don't have an account with us, our system will create one for you.";
+const unsigned int Login::mInstructionsFontColor = 0x00FFFFFF;
 const char* Login::mStatusText = "";
 const unsigned int Login::mStatusFontColor = 0x00205081;
-const char* Login::mSubmitButtonLabel = "Submit";
+const char* Login::mMailBoxPlaceholder = "Your email here";
+const char* Login::mPasswordBoxPlaceholder = "Your password here";
+const char* Login::mSubmitButtonLabel = "Start now";
 const char* Login::mSubmitButtonErrorMissingMail = "Please enter your e-mail address!";
 const char* Login::mSubmitButtonErrorMissingPwd = "Please enter your password!";
 
@@ -47,6 +50,7 @@ void Login::createUI()
 	mInstructions->fillSpaceHorizontally();
 	mInstructions->wrapContentVertically();
 	mInstructions->setText(mInstructionsText);
+	mInstructions->setFontColor(mInstructionsFontColor);
 	mMainLayout->addChild(mInstructions);
 
 	mStatus = new Label();
@@ -60,12 +64,14 @@ void Login::createUI()
 	mMailBox->fillSpaceHorizontally();
 	mMailBox->wrapContentVertically();
 	mMailBox->setInputMode(EDIT_BOX_INPUT_MODE_EMAILADDR);
+	mMailBox->setPlaceholder(mMailBoxPlaceholder);
 	mMainLayout->addChild(mMailBox);
 
 	mPasswordBox = new EditBox();
 	mPasswordBox->fillSpaceHorizontally();
 	mPasswordBox->wrapContentVertically();
 	mPasswordBox->setInputFlag(EDIT_BOX_INPUT_FLAG_PASSWORD);
+	mPasswordBox->setPlaceholder(mPasswordBoxPlaceholder);
 	mMainLayout->addChild(mPasswordBox);
 
 	mSubmitButton = new Button();
