@@ -68,6 +68,20 @@ namespace View
 						setHour(now.getHour());
 						setMinute(now.getMinute());
 					}
+
+					void timeFrom(Dialog* other)
+					{
+						setDate(other->getDate());
+						setHour(other->getHour());
+						setMinute(other->getMinute());
+					}
+
+					time_t timeToUnix()
+					{
+						NativeUI::Date date = getDate();
+						MAPUtil::DateTime date_(date.year - 1900, date.month, date.day, getHour(), getMinute(), 0);
+						return date_.getTicks();
+					}
 			};
 
 			NativeUI::VerticalLayout* mMainLayout;
@@ -92,6 +106,7 @@ namespace View
 
 			void createUI();
 			void updateTime(Dialog* source);
+			void validateTime();
 
 			virtual void buttonClicked(NativeUI::Widget* button);
 			virtual void editBoxReturn(NativeUI::EditBox* editBox);
