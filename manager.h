@@ -4,6 +4,8 @@
 #include "controllers/cLogin.h"
 #include "views/vLogin.h"
 
+#include "views/vWorklog.h"
+
 namespace Manager
 {
 	class Login
@@ -15,6 +17,17 @@ namespace Manager
 
 			Controller::Login* controller;
 			View::Login* view;
+	};
+
+	class Worklog
+	{
+		public:
+			Worklog() : view(new View::Worklog(this)) {}
+			~Worklog() { free(); }
+			void free() { delete view; view = NULL; }
+
+			//Controller::Worklog* controller;
+			View::Worklog* view;
 	};
 }
 

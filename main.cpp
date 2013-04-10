@@ -12,6 +12,7 @@ class ZeitkitTimer : public Moblet
 {
 	private:
 		Manager::Login mLogin;
+		Manager::Worklog mWorklog;
 
 	public:
 		ZeitkitTimer()
@@ -27,6 +28,7 @@ class ZeitkitTimer : public Moblet
 		void ZeitkitTimer::closeEvent() GCCATTRIB(noreturn)
 		{
 			mLogin.free();
+			mWorklog.free();
 			close();
 		}
 
