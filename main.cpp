@@ -17,7 +17,7 @@ class ZeitkitTimer : public Moblet
 	public:
 		ZeitkitTimer()
 		{
-			mLogin.view->show();
+			mWorklog.view->show();
 		}
 
 		virtual ~ZeitkitTimer()

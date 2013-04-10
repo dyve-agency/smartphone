@@ -7,7 +7,7 @@ using namespace NativeUI;
 const unsigned int Worklog::mMainLayoutBgColor = 0x00EC5A47;
 const char* Worklog::mInstructionsText = "Create a new worklog.";
 const unsigned int Worklog::mInstructionsFontColor = 0x00FFFFFF;
-const char* Worklog::mTrackerButtonLabel = "Use time tracker";
+const char* Worklog::mTrackerButtonLabel = "Stop tracking";
 const char* Worklog::mStartTimeBoxPlaceholder = "Start time";
 const char* Worklog::mEndTimeBoxPlaceholder = "End time";
 const char* Worklog::mReasonBoxPlaceholder = "The reason, e.g. \"Finish feature 1.\"";
@@ -123,6 +123,13 @@ void Worklog::createUI()
 	mMainLayout->addChild(mSubmitButton);
 }
 
+void Worklog::updateTime(Dialog* source)
+{
+	char time[64];
+	source->timeToString(time, sizeof(time));
+	(source == mStartTimeDialog ? mStartTimeBox : mEndTimeBox)->setPlaceholder(MAUtil::String(time) + (source == mStartTimeDialog ? " (start)" : " (end)"));
+}
+
 void Worklog::Dialog::createUI()
 {
 	mDialog = new NativeUI::Dialog();
@@ -154,12 +161,17 @@ void Worklog::Dialog::createUI()
 
 void Worklog::buttonClicked(Widget* button)
 {
-
+	if (button == mTrackerButton)
+	{
+		mEndTimeDialog->timeToNow();
+		updateTime(mEndTimeDialog);
+	}
 }
 
 void Worklog::Dialog::buttonClicked(Widget* button)
 {
 	mDialog->hide();
+	worklog->updateTime(this);
 }
 
 void Worklog::editBoxReturn(EditBox* editBox)
@@ -179,5 +191,12 @@ void Worklog::editBoxEditingDidBegin(EditBox* editBox)
 		mEndTimeBox->hideKeyboard();
 		mEndTimeDialog->show();
 	}
+}
+
+void Worklog::show()
+{
+	mStartTimeDialog->timeToNow();
+	updateTime(mStartTimeDialog);
+	Screen::show();
 }
 

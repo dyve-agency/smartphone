@@ -5,6 +5,7 @@
 #include <MAUtil/util.h>
 #include <NativeUI/Widgets.h>
 #include <MAHeaders.h>
+#include <MAP/DateTime.h>
 
 namespace Manager
 {
@@ -40,6 +41,33 @@ namespace View
 
 					void show() { mDialog->show(); }
 					void hide() { mDialog->hide(); }
+
+					NativeUI::Date getDate() { return mDatePicker->getDate(); }
+					void setDate(const NativeUI::Date& date) { mDatePicker->setDate(date); }
+					int getHour() { return mTimePicker->getHour(); }
+					void setHour(int hour) { mTimePicker->setHour(hour); }
+					int getMinute() { return mTimePicker->getMinute(); }
+					void setMinute(int minute) { mTimePicker->setMinute(minute); }
+
+					void timeToString(char* buffer, unsigned int len)
+					{
+						// snprintf
+						sprintf(buffer, "%02d.%02d.%04d %02d:%02d", mDatePicker->getDayOfMonth(), mDatePicker->getMonth(), mDatePicker->getYear(), mTimePicker->getHour(), mTimePicker->getMinute());
+					}
+
+					void timeToNow()
+					{
+						MAPUtil::DateTime now = MAPUtil::DateTime::now();
+
+						NativeUI::Date date;
+						date.day = now.getDay();
+						date.month = now.getMonth();
+						date.year = now.getYear() + 1900;
+
+						setDate(date);
+						setHour(now.getHour());
+						setMinute(now.getMinute());
+					}
 			};
 
 			NativeUI::VerticalLayout* mMainLayout;
@@ -63,6 +91,7 @@ namespace View
 			static const char* mSubmitButtonLabel;
 
 			void createUI();
+			void updateTime(Dialog* source);
 
 			virtual void buttonClicked(NativeUI::Widget* button);
 			virtual void editBoxReturn(NativeUI::EditBox* editBox);
@@ -71,6 +100,8 @@ namespace View
 		public:
 			Worklog(Manager::Worklog* manager);
 			~Worklog();
+
+			virtual void show();
 	};
 }
 
