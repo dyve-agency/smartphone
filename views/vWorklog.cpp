@@ -130,13 +130,9 @@ void Worklog::updateTime(Dialog* source)
 	(source == mStartTimeDialog ? mStartTimeBox : mEndTimeBox)->setPlaceholder(MAUtil::String(time) + (source == mStartTimeDialog ? " (start)" : " (end)"));
 }
 
-void Worklog::validateTime()
+bool Worklog::validateTime()
 {
-	if (mStartTimeDialog->timeToUnix() > mEndTimeDialog->timeToUnix())
-	{
-		mStartTimeDialog->timeFrom(mEndTimeDialog);
-		updateTime(mStartTimeDialog);
-	}
+	return mStartTimeDialog->timeToUnix() <= mEndTimeDialog->timeToUnix();
 }
 
 void Worklog::Dialog::createUI()
@@ -174,15 +170,28 @@ void Worklog::buttonClicked(Widget* button)
 	{
 		mEndTimeDialog->timeToNow();
 		updateTime(mEndTimeDialog);
-		validateTime();
+
+		if (!validateTime())
+		{
+			mStartTimeDialog->timeFrom(mEndTimeDialog);
+			updateTime(mStartTimeDialog);
+		}
 	}
 }
 
 void Worklog::Dialog::buttonClicked(Widget* button)
 {
 	mDialog->hide();
+
+	Dialog* other = this == worklog->mEndTimeDialog ? worklog->mStartTimeDialog : worklog->mEndTimeDialog;
+
 	worklog->updateTime(this);
-	worklog->validateTime();
+
+	if (!worklog->validateTime())
+	{
+		other->timeFrom(this);
+		worklog->updateTime(other);
+	}
 }
 
 void Worklog::editBoxReturn(EditBox* editBox)

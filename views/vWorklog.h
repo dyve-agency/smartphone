@@ -106,7 +106,7 @@ namespace View
 
 			void createUI();
 			void updateTime(Dialog* source);
-			void validateTime();
+			bool validateTime();
 
 			virtual void buttonClicked(NativeUI::Widget* button);
 			virtual void editBoxReturn(NativeUI::EditBox* editBox);
