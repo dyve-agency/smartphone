@@ -6,15 +6,18 @@
 
 #include "views/vWorklog.h"
 
+class ZeitkitTimer;
+
 namespace Manager
 {
 	class Login
 	{
 		public:
-			Login() : controller(new Controller::Login(this)), view(new View::Login(this)) {}
+			Login(ZeitkitTimer* main) : main(main), view(new View::Login(this)), controller(new Controller::Login(this))  {}
 			~Login() { free(); }
 			void free() { delete controller; delete view; controller = NULL; view = NULL; }
 
+			ZeitkitTimer* main;
 			Controller::Login* controller;
 			View::Login* view;
 	};
@@ -22,10 +25,11 @@ namespace Manager
 	class Worklog
 	{
 		public:
-			Worklog() : view(new View::Worklog(this)) {}
+			Worklog(ZeitkitTimer* main) : main(main), view(new View::Worklog(this)) {}
 			~Worklog() { free(); }
 			void free() { delete view; view = NULL; }
 
+			ZeitkitTimer* main;
 			//Controller::Worklog* controller;
 			View::Worklog* view;
 	};

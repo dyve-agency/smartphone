@@ -45,6 +45,8 @@ namespace View
 		public:
 			Login(Manager::Login* manager);
 			~Login();
+
+			void callbackAuthentication();
 	};
 }
 

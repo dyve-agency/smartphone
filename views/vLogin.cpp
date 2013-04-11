@@ -1,5 +1,6 @@
 #include "vLogin.h"
 #include "../manager.h"
+#include "../main.h"
 
 using namespace View;
 using namespace NativeUI;
@@ -85,7 +86,7 @@ void Login::createUI()
 
 void Login::buttonClicked(Widget* button)
 {
-	if (button == mSubmitButton)
+	if (button == mSubmitButton && mSubmitButton->isEnabled())
 	{
 		MAUtil::String mail = mMailBox->getText();
 		MAUtil::String pwd = mPasswordBox->getText();
@@ -102,9 +103,11 @@ void Login::buttonClicked(Widget* button)
 			return;
 		}
 
-		mStatus->setText("");
+		mSubmitButton->setEnabled(false);
+		mStatus->setText("Authenticating...");
 		mMailBox->hideKeyboard();
 		mPasswordBox->hideKeyboard();
+
 		manager->controller->actionSubmit(mail, pwd);
 	}
 }
@@ -115,3 +118,15 @@ void Login::editBoxReturn(EditBox* editBox)
 	mPasswordBox->hideKeyboard();
 }
 
+void Login::callbackAuthentication()
+{
+	mSubmitButton->setEnabled(true);
+
+	if (manager->controller->isAuthenticated())
+	{
+		mStatus->setText("");
+		manager->main->mWorklog.view->show();
+	}
+	else
+		mStatus->setText("Authentication failed!");
+}
