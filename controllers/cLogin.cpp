@@ -7,7 +7,7 @@ using namespace Controller;
 
 const char* Login::qLogin = "sessions";
 
-Login::Login(Manager::Login* manager) : manager(manager), mHttp(this), connection(false)
+Login::Login(Manager::Login* manager) : manager(manager), mHttp(this)
 {
 
 }

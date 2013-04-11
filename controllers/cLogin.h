@@ -22,7 +22,6 @@ namespace Controller
 			MAUtil::HttpConnection mHttp;
 			MAUtil::String auth_token;
 			char buffer[64]; // max response len
-			bool connection;
 
 			static const char* qLogin;
 
