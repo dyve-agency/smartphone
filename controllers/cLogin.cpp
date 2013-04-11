@@ -1,10 +1,11 @@
 #include "cLogin.h"
 #include "../manager.h"
 #include "../ext/json.h"
+#include "../main.h"
 
 using namespace Controller;
 
-const char* Login::qLogin = "http://foxtacles.com:3000/sessions";
+const char* Login::qLogin = "sessions";
 
 Login::Login(Manager::Login* manager) : manager(manager), mHttp(this), connection(false)
 {
@@ -21,7 +22,7 @@ void Login::actionSubmit(const MAUtil::String& mail, const MAUtil::String& pwd)
 	auth_token = "";
 	memset(buffer, 0, sizeof(buffer));
 
-	int res = mHttp.create(qLogin, HTTP_POST);
+	int res = mHttp.create((MAUtil::String(manager->main->host) + "/" + qLogin).c_str(), HTTP_POST);
 
 	if (res < 0)
 		return;

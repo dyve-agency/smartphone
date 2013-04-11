@@ -11,6 +11,8 @@
 class ZeitkitTimer : public MAUtil::Moblet
 {
 	public:
+		static const char* host;
+
 		Manager::Login mLogin;
 		Manager::Worklog mWorklog;
 
