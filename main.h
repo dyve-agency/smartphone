@@ -16,8 +16,9 @@ class ZeitkitTimer : public MAUtil::Moblet
 		Manager::Login mLogin;
 		Manager::Worklog mWorklog;
 
-		ZeitkitTimer() : mLogin(this), mWorklog(this)
+		ZeitkitTimer()
 		{
+			Manager::main = this;
 			mLogin.view->show();
 		}
 

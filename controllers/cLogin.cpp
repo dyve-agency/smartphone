@@ -22,10 +22,13 @@ void Login::actionSubmit(const MAUtil::String& mail, const MAUtil::String& pwd)
 	auth_token = "";
 	memset(buffer, 0, sizeof(buffer));
 
-	int res = mHttp.create((MAUtil::String(manager->main->host) + "/" + qLogin).c_str(), HTTP_POST);
+	int res = mHttp.create((MAUtil::String(Manager::main->host) + "/" + qLogin).c_str(), HTTP_POST);
 
 	if (res < 0)
+	{
+		manager->view->callbackAuthentication();
 		return;
+	}
 
 	// escape input
 	static MAUtil::String jsonQuery;

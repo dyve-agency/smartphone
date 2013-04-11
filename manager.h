@@ -10,14 +10,15 @@ class ZeitkitTimer;
 
 namespace Manager
 {
+	static ZeitkitTimer* main;
+
 	class Login
 	{
 		public:
-			Login(ZeitkitTimer* main) : main(main), view(new View::Login(this)), controller(new Controller::Login(this))  {}
+			Login() : view(new View::Login(this)), controller(new Controller::Login(this))  {}
 			~Login() { free(); }
 			void free() { delete controller; delete view; controller = NULL; view = NULL; }
 
-			ZeitkitTimer* main;
 			Controller::Login* controller;
 			View::Login* view;
 	};
@@ -25,11 +26,10 @@ namespace Manager
 	class Worklog
 	{
 		public:
-			Worklog(ZeitkitTimer* main) : main(main), view(new View::Worklog(this)) {}
+			Worklog() : view(new View::Worklog(this)) {}
 			~Worklog() { free(); }
 			void free() { delete view; view = NULL; }
 
-			ZeitkitTimer* main;
 			//Controller::Worklog* controller;
 			View::Worklog* view;
 	};

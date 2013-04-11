@@ -125,7 +125,7 @@ void Login::callbackAuthentication()
 	if (manager->controller->isAuthenticated())
 	{
 		mStatus->setText("");
-		manager->main->mWorklog.view->show();
+		Manager::main->mWorklog.view->show();
 	}
 	else
 		mStatus->setText("Authentication failed!");
