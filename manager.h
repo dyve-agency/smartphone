@@ -10,7 +10,7 @@ class ZeitkitTimer;
 
 namespace Manager
 {
-	static ZeitkitTimer* main;
+	extern ZeitkitTimer* main;
 
 	class Login
 	{

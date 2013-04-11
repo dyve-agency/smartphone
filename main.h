@@ -19,7 +19,9 @@ class ZeitkitTimer : public MAUtil::Moblet
 		ZeitkitTimer()
 		{
 			Manager::main = this;
-			mLogin.view->show();
+
+			if (!mLogin.controller->isAuthenticated())
+				mLogin.view->show();
 		}
 
 		virtual ~ZeitkitTimer()
