@@ -9,6 +9,7 @@
 </filter>
 </criteria>
 <properties>
+<property key="android:manifest.template" value="C:\MoSync\eclipse\workspace\zeitkit-timer\AndroidManifest.template"/>
 <property key="android:package.name" value="com.zeitkit.timer"/>
 <property key="android:version.number" value="8"/>
 <property key="build.prefs:additional.include.paths" value="%mosync-home%/include"/>

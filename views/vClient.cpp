@@ -79,6 +79,7 @@ void Client::show()
 		mClients.add(item);
 	}
 
+	mClientList->requestFocus();
 	Screen::show();
 }
 
