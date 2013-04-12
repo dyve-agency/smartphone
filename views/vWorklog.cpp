@@ -61,7 +61,6 @@ void Worklog::createUI()
 	mMainLayout = new VerticalLayout();
 	mMainLayout->fillSpaceHorizontally();
 	mMainLayout->fillSpaceVertically();
-	mMainLayout->setScrollable(true);
 	mMainLayout->setBackgroundColor(mMainLayoutBgColor);
 
 	Screen::setMainWidget(mMainLayout);
@@ -128,6 +127,8 @@ void Worklog::createUI()
 	mSubmitButton->setTextVerticalAlignment(MAW_ALIGNMENT_CENTER);
 	mSubmitButton->setText(mSubmitButtonLabel);
 	mMainLayout->addChild(mSubmitButton);
+
+	//mMainLayout->setScrollable(true);
 }
 
 void Worklog::updateTime(Dialog* source)

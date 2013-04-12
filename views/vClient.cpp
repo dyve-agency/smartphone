@@ -27,7 +27,6 @@ void Client::createUI()
 	mMainLayout = new VerticalLayout();
 	mMainLayout->fillSpaceHorizontally();
 	mMainLayout->fillSpaceVertically();
-	//mMainLayout->setScrollable(true);
 	mMainLayout->setBackgroundColor(mMainLayoutBgColor);
 
 	Screen::setMainWidget(mMainLayout);
@@ -49,6 +48,8 @@ void Client::createUI()
 	mClientList->fillSpaceHorizontally();
 	mClientList->fillSpaceVertically();
 	mMainLayout->addChild(mClientList);
+
+	//mMainLayout->setScrollable(true);
 }
 
 void Client::listViewItemClicked(ListView* listView, ListViewItem* listViewItem)
