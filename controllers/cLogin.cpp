@@ -9,7 +9,21 @@ const char* Login::qLogin = "sessions";
 
 Login::Login(Manager::Login* manager) : manager(manager), mHttp(this)
 {
-	// get auth token from storage
+	MAHandle zeitstore = maOpenStore("ZeitkitTimer", 0);
+
+	if (zeitstore != STERR_NONEXISTENT)
+	{
+		MAHandle authdata = maCreatePlaceholder();
+
+		maReadStore(zeitstore, authdata);
+		memset(buffer, 0, sizeof(buffer));
+		maReadData(authdata, buffer, 0, maGetDataSize(authdata));
+
+		auth_token = buffer;
+
+		maDestroyObject(authdata);
+		maCloseStore(zeitstore, 0);
+	}
 }
 
 Login::~Login()
@@ -68,7 +82,20 @@ void Login::connReadFinished(MAUtil::Connection* conn, int result)
 	json_value* root = json_parse(buffer, &errorPos, &errorDesc, &errorLine, &allocator);
 
 	if (root)
+	{
 		auth_token = root->first_child->string_value;
+
+		MAHandle zeitstore = maOpenStore("ZeitkitTimer", MAS_CREATE_IF_NECESSARY);
+		MAHandle authdata = maCreatePlaceholder();
+
+		maCreateData(authdata, auth_token.length());
+		maWriteData(authdata, auth_token.c_str(), 0, auth_token.length());
+
+		maWriteStore(zeitstore, authdata);
+
+		maDestroyObject(authdata);
+		maCloseStore(zeitstore, 0);
+	}
 
 	manager->view->callbackAuthentication();
 }
