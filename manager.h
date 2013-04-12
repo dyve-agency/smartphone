@@ -6,6 +6,9 @@
 
 #include "views/vWorklog.h"
 
+#include "controllers/cClient.h"
+#include "views/vClient.h"
+
 class ZeitkitTimer;
 
 namespace Manager
@@ -32,6 +35,17 @@ namespace Manager
 
 			//Controller::Worklog* controller;
 			View::Worklog* view;
+	};
+
+	class Client
+	{
+		public:
+			Client() : view(new View::Client(this)), controller(new Controller::Client(this)) {}
+			~Client() { free(); }
+			void free() { delete view; view = NULL; }
+
+			Controller::Client* controller;
+			View::Client* view;
 	};
 }
 

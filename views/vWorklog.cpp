@@ -1,12 +1,14 @@
 #include "vWorklog.h"
 #include "../manager.h"
+#include "../main.h"
 
 using namespace View;
 using namespace NativeUI;
 
 const unsigned int Worklog::mMainLayoutBgColor = 0x00EC5A47;
-const char* Worklog::mInstructionsText = "Create a new worklog.";
+const char* Worklog::mInstructionsText = "Create a new worklog for ";
 const unsigned int Worklog::mInstructionsFontColor = 0x00FFFFFF;
+const char* Worklog::mClientButtonLabel = "Change client";
 const char* Worklog::mTrackerButtonLabel = "Stop tracking";
 const char* Worklog::mStartTimeBoxPlaceholder = "Start time";
 const char* Worklog::mEndTimeBoxPlaceholder = "End time";
@@ -20,6 +22,7 @@ Worklog::Worklog(Manager::Worklog* manager) : manager(manager), Screen()
 	createUI();
 
 	mSubmitButton->addButtonListener(this);
+	mClientButton->addButtonListener(this);
 	mTrackerButton->addButtonListener(this);
 	mStartTimeBox->addEditBoxListener(this);
 	mEndTimeBox->addEditBoxListener(this);
@@ -29,6 +32,7 @@ Worklog::Worklog(Manager::Worklog* manager) : manager(manager), Screen()
 Worklog::~Worklog()
 {
 	mSubmitButton->removeButtonListener(this);
+	mClientButton->removeButtonListener(this);
 	mTrackerButton->removeButtonListener(this);
 	mStartTimeBox->removeEditBoxListener(this);
 	mEndTimeBox->removeEditBoxListener(this);
@@ -54,11 +58,6 @@ Worklog::Dialog::~Dialog()
 
 void Worklog::createUI()
 {
-	VerticalLayout* layout;
-	DatePicker* date;
-	TimePicker* time;
-	Button* button;
-
 	mMainLayout = new VerticalLayout();
 	mMainLayout->fillSpaceHorizontally();
 	mMainLayout->fillSpaceVertically();
@@ -79,6 +78,14 @@ void Worklog::createUI()
 	mInstructions->setText(mInstructionsText);
 	mInstructions->setFontColor(mInstructionsFontColor);
 	mMainLayout->addChild(mInstructions);
+
+	mClientButton = new Button();
+	mClientButton->fillSpaceHorizontally();
+	mClientButton->wrapContentVertically();
+	mClientButton->setTextHorizontalAlignment(MAW_ALIGNMENT_CENTER);
+	mClientButton->setTextVerticalAlignment(MAW_ALIGNMENT_CENTER);
+	mClientButton->setText(mClientButtonLabel);
+	mMainLayout->addChild(mClientButton);
 
 	mTrackerButton = new Button();
 	mTrackerButton->fillSpaceHorizontally();
@@ -177,6 +184,8 @@ void Worklog::buttonClicked(Widget* button)
 			updateTime(mStartTimeDialog);
 		}
 	}
+	else if (button == mClientButton)
+		Manager::main->mClient.view->show();
 }
 
 void Worklog::Dialog::buttonClicked(Widget* button)
@@ -216,7 +225,12 @@ void Worklog::editBoxEditingDidBegin(EditBox* editBox)
 void Worklog::show()
 {
 	mStartTimeDialog->timeToNow();
+	mEndTimeDialog->timeToNow();
 	updateTime(mStartTimeDialog);
+	mEndTimeBox->setPlaceholder(mEndTimeBoxPlaceholder);
+
+	mInstructions->setText(MAUtil::String(mInstructionsText) + Manager::main->mClient.controller->getClient(Manager::main->mClient.view->getSelectedClient())->name + ".");
+
 	Screen::show();
 }
 

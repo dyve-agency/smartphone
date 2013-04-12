@@ -9,7 +9,7 @@ const char* Login::qLogin = "sessions";
 
 Login::Login(Manager::Login* manager) : manager(manager), mHttp(this)
 {
-
+	// get auth token from storage
 }
 
 Login::~Login()

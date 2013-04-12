@@ -35,6 +35,7 @@ namespace Controller
 
 			bool isAuthenticated() { return auth_token.size() > 0; }
 			const MAUtil::String& getAuthToken() { return auth_token; }
+			void removeAuth() { auth_token = ""; }
 
 			void actionSubmit(const MAUtil::String& mail, const MAUtil::String& pwd);
 	};

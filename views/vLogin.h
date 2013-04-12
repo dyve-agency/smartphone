@@ -47,6 +47,7 @@ namespace View
 			~Login();
 
 			void callbackAuthentication();
+			void callbackClients();
 	};
 }
 

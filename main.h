@@ -13,14 +13,17 @@ class ZeitkitTimer : public MAUtil::Moblet
 	public:
 		static const char* host;
 
-		Manager::Login mLogin;
 		Manager::Worklog mWorklog;
+		Manager::Client mClient;
+		Manager::Login mLogin;
 
 		ZeitkitTimer()
 		{
 			Manager::main = this;
 
-			if (!mLogin.controller->isAuthenticated())
+			if (mLogin.controller->isAuthenticated())
+				mClient.controller->actionClients();
+			else
 				mLogin.view->show();
 		}
 
@@ -32,6 +35,7 @@ class ZeitkitTimer : public MAUtil::Moblet
 		void ZeitkitTimer::closeEvent() GCCATTRIB(noreturn)
 		{
 			mLogin.free();
+			mClient.free();
 			mWorklog.free();
 			close();
 		}

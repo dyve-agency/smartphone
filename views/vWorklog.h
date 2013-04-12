@@ -87,6 +87,7 @@ namespace View
 			NativeUI::VerticalLayout* mMainLayout;
 			NativeUI::Image* mLogo;
 			NativeUI::Label* mInstructions;
+			NativeUI::Button* mClientButton;
 			NativeUI::Button* mTrackerButton;
 			NativeUI::EditBox* mStartTimeBox;
 			Dialog* mStartTimeDialog;
@@ -98,6 +99,7 @@ namespace View
 			static const unsigned int mMainLayoutBgColor;
 			static const char* mInstructionsText;
 			static const unsigned int mInstructionsFontColor;
+			static const char* mClientButtonLabel;
 			static const char* mTrackerButtonLabel;
 			static const char* mStartTimeBoxPlaceholder;
 			static const char* mEndTimeBoxPlaceholder;
