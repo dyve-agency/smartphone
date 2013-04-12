@@ -21,7 +21,7 @@
 <property key="build.prefs:additional.library.paths/Debug" value="%mosync-home%/lib/pipe"/>
 <property key="build.prefs:additional.library.paths/Release" value="%mosync-home%/lib/pipe, %mosync-home%/lib/newlib_release"/>
 <property key="build.prefs:app.name/Release" value="Zeitkit Timer"/>
-<property key="build.prefs:app.permissions" value="File\ Storage Internet\ Access Vibration"/>
+<property key="build.prefs:app.permissions" value="Internet\ Access Vibration"/>
 <property key="build.prefs:app.vendor/Release" value="Zeitkit"/>
 <property key="build.prefs:extra.link.sw/Debug" value=""/>
 <property key="build.prefs:extra.link.sw/Release" value=""/>
