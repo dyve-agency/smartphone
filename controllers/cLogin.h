@@ -4,6 +4,7 @@
 #include <maapi.h>
 #include <MAUtil/util.h>
 #include <mautil/connection.h>
+#include <Wormhole/Encoder.h>
 #include <mastdlib.h>
 #include <conprint.h>
 

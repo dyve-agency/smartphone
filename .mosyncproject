@@ -17,7 +17,7 @@
 <property key="build.prefs:additional.include.paths/Release" value="%mosync-home%/include, %mosync-home%/include/newlib/stlport, %mosync-home%/include/newlib"/>
 <property key="build.prefs:additional.libraries" value="mastd.lib, MAUtil.lib, MAUI.lib"/>
 <property key="build.prefs:additional.libraries/Debug" value="mastdD.lib, MAUtilD.lib, NativeUI.lib"/>
-<property key="build.prefs:additional.libraries/Release" value="mastd.lib, mautil.lib, NativeUI.lib, MAFS.lib, MAP.lib, MAUI.lib"/>
+<property key="build.prefs:additional.libraries/Release" value="mastd.lib, mautil.lib, NativeUI.lib, MAFS.lib, MAP.lib, MAUI.lib, wormhole.lib, yajl.lib, Notification.lib"/>
 <property key="build.prefs:additional.library.paths" value="%mosync-home%/lib/pipe"/>
 <property key="build.prefs:additional.library.paths/Debug" value="%mosync-home%/lib/pipe"/>
 <property key="build.prefs:additional.library.paths/Release" value="%mosync-home%/lib/pipe, %mosync-home%/lib/newlib_release"/>

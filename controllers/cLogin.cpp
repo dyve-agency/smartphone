@@ -46,7 +46,7 @@ void Login::actionSubmit(const MAUtil::String& mail, const MAUtil::String& pwd)
 
 	// escape input
 	static MAUtil::String jsonQuery;
-	jsonQuery = "{\"email\": \"" + mail + "\", \"password\": \"" + pwd + "\"}";
+	jsonQuery = "{\"email\": " + Wormhole::Encoder::JSONStringify(mail.c_str()) + ", \"password\": " + Wormhole::Encoder::JSONStringify(pwd.c_str()) + "}";
 
 	mHttp.setRequestHeader("Accept", "application/json");
 	mHttp.setRequestHeader("Content-type", "application/json");

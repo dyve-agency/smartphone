@@ -4,6 +4,7 @@
 #include "controllers/cLogin.h"
 #include "views/vLogin.h"
 
+#include "controllers/cWorklog.h"
 #include "views/vWorklog.h"
 
 #include "controllers/cClient.h"
@@ -18,7 +19,7 @@ namespace Manager
 	class Login
 	{
 		public:
-			Login() : view(new View::Login(this)), controller(new Controller::Login(this))  {}
+			Login() : view(new View::Login(this)), controller(new Controller::Login(this)) {}
 			~Login() { free(); }
 			void free() { delete controller; delete view; controller = NULL; view = NULL; }
 
@@ -29,11 +30,11 @@ namespace Manager
 	class Worklog
 	{
 		public:
-			Worklog() : view(new View::Worklog(this)) {}
+			Worklog() : view(new View::Worklog(this)), controller(new Controller::Worklog(this)) {}
 			~Worklog() { free(); }
-			void free() { delete view; view = NULL; }
+			void free() { delete controller; delete view; controller = NULL; view = NULL; }
 
-			//Controller::Worklog* controller;
+			Controller::Worklog* controller;
 			View::Worklog* view;
 	};
 
@@ -42,7 +43,7 @@ namespace Manager
 		public:
 			Client() : view(new View::Client(this)), controller(new Controller::Client(this)) {}
 			~Client() { free(); }
-			void free() { delete view; view = NULL; }
+			void free() { delete controller; delete view; controller = NULL; view = NULL; }
 
 			Controller::Client* controller;
 			View::Client* view;

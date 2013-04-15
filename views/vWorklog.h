@@ -7,6 +7,8 @@
 #include <MAHeaders.h>
 #include <MAP/DateTime.h>
 
+#include "../utils/Alert.h"
+
 namespace Manager
 {
 	class Worklog;
@@ -95,6 +97,7 @@ namespace View
 			Dialog* mEndTimeDialog;
 			NativeUI::EditBox* mReasonBox;
 			NativeUI::Button* mSubmitButton;
+			Utils::Alert* mAlertBox;
 
 			static const unsigned int mMainLayoutBgColor;
 			static const char* mInstructionsText;
@@ -105,6 +108,9 @@ namespace View
 			static const char* mEndTimeBoxPlaceholder;
 			static const char* mReasonBoxPlaceholder;
 			static const char* mSubmitButtonLabel;
+			static const char* mAlertBoxSuccessLabel;
+			static const char* mAlertBoxFailureLabel;
+			static const char* mAlertBoxTimeErrorLabel;
 
 			void createUI();
 			void updateTime(Dialog* source);
@@ -119,6 +125,8 @@ namespace View
 			~Worklog();
 
 			virtual void show();
+
+			void callbackWorklog(bool success);
 	};
 }
 

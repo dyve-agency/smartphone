@@ -14,6 +14,9 @@ const char* Worklog::mStartTimeBoxPlaceholder = "Start time";
 const char* Worklog::mEndTimeBoxPlaceholder = "End time";
 const char* Worklog::mReasonBoxPlaceholder = "The reason, e.g. \"Finish feature 1.\"";
 const char* Worklog::mSubmitButtonLabel = "Submit this worklog";
+const char* Worklog::mAlertBoxSuccessLabel = "Worklog has been successfully submitted!";
+const char* Worklog::mAlertBoxFailureLabel = "Oops, something went wrong. Sorry!";
+const char* Worklog::mAlertBoxTimeErrorLabel = "The end time must not match the start time!";
 
 const char* Worklog::Dialog::mSubmitButtonLabel = "OK";
 
@@ -40,6 +43,7 @@ Worklog::~Worklog()
 
 	delete mStartTimeDialog;
 	delete mEndTimeDialog;
+	delete mAlertBox;
 }
 
 Worklog::Dialog::Dialog(Worklog::Worklog* worklog) : worklog(worklog)
@@ -128,7 +132,9 @@ void Worklog::createUI()
 	mSubmitButton->setText(mSubmitButtonLabel);
 	mMainLayout->addChild(mSubmitButton);
 
-	//mMainLayout->setScrollable(true);
+	mAlertBox = new Utils::Alert("");
+
+	mMainLayout->setScrollable(true);
 }
 
 void Worklog::updateTime(Dialog* source)
@@ -187,6 +193,21 @@ void Worklog::buttonClicked(Widget* button)
 	}
 	else if (button == mClientButton)
 		Manager::main->mClient.view->show();
+	else if (button == mSubmitButton)
+	{
+		unsigned int start = mStartTimeDialog->timeToUnix();
+		unsigned int end = mEndTimeDialog->timeToUnix();
+
+		if (start == end)
+		{
+			mAlertBox->setText(mAlertBoxTimeErrorLabel);
+			mAlertBox->show();
+			return;
+		}
+
+		mSubmitButton->setEnabled(false);
+		manager->controller->actionSubmit(start, end, Manager::main->mClient.view->getSelectedClient(), mReasonBox->getText());
+	}
 }
 
 void Worklog::Dialog::buttonClicked(Widget* button)
@@ -235,3 +256,22 @@ void Worklog::show()
 	Screen::show();
 }
 
+void Worklog::callbackWorklog(bool success)
+{
+	mSubmitButton->setEnabled(true);
+
+	if (success)
+	{
+		mReasonBox->setText("");
+		mStartTimeDialog->timeToNow();
+		mEndTimeDialog->timeToNow();
+		updateTime(mStartTimeDialog);
+		mEndTimeBox->setPlaceholder(mEndTimeBoxPlaceholder);
+
+		mAlertBox->setText(mAlertBoxSuccessLabel);
+	}
+	else
+		mAlertBox->setText(mAlertBoxFailureLabel);
+
+	mAlertBox->show();
+}

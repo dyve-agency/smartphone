@@ -5,7 +5,7 @@
 
 using namespace Controller;
 
-const char* Client::qClients = "users/2/clients.json";
+const char* Client::qClients = "clients.json";
 
 Client::Client(Manager::Client* manager) : manager(manager), mHttp(this)
 {
