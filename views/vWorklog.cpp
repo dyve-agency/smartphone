@@ -14,9 +14,9 @@ const char* Worklog::mStartTimeBoxPlaceholder = "Start time";
 const char* Worklog::mEndTimeBoxPlaceholder = "End time";
 const char* Worklog::mReasonBoxPlaceholder = "The reason, e.g. \"Finish feature 1.\"";
 const char* Worklog::mSubmitButtonLabel = "Submit this worklog";
-const char* Worklog::mAlertBoxSuccessLabel = "Worklog has been successfully submitted!";
-const char* Worklog::mAlertBoxFailureLabel = "Oops, something went wrong. Sorry!";
-const char* Worklog::mAlertBoxTimeErrorLabel = "The end time must not match the start time!";
+const char* Worklog::mAlertBoxSuccessLabel = "Worklog has been successfully submitted!\n";
+const char* Worklog::mAlertBoxFailureLabel = "Oops, something went wrong. Sorry!\n";
+const char* Worklog::mAlertBoxTimeErrorLabel = "The end time must not match the start time!\n";
 
 const char* Worklog::Dialog::mSubmitButtonLabel = "OK";
 
