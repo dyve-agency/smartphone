@@ -3,7 +3,7 @@
 using namespace MAUtil;
 using namespace NativeUI;
 
-const char* ZeitkitTimer::host = "http://foxtacles.com:3000";
+const char* ZeitkitTimer::host = "http://zeitkit.com";
 
 namespace Manager
 {
