@@ -9,6 +9,7 @@ const unsigned int Client::mMainLayoutBgColor = 0x00EC5A47;
 const char* Client::mInstructionsText = "Select a client below.";
 const unsigned int Client::mInstructionsFontColor = 0x00FFFFFF;
 const unsigned int Client::mClientListFontColor = 0x00FFFFFF;
+const char* Client::mAlertNoClientsText = "You have not yet created a client. Please do so on zeitkit.com first.\n";
 
 Client::Client(Manager::Client* manager) : manager(manager), mSelectedClient(0), Screen()
 {
@@ -20,6 +21,8 @@ Client::Client(Manager::Client* manager) : manager(manager), mSelectedClient(0),
 Client::~Client()
 {
 	mClientList->removeListViewListener(this);
+
+	delete mAlert;
 }
 
 void Client::createUI()
@@ -48,6 +51,8 @@ void Client::createUI()
 	mClientList->fillSpaceHorizontally();
 	mClientList->fillSpaceVertically();
 	mMainLayout->addChild(mClientList);
+
+	mAlert = new Utils::Alert(mAlertNoClientsText);
 
 	//mMainLayout->setScrollable(true);
 }
@@ -88,6 +93,11 @@ void Client::callbackClients()
 {
 	if (!Manager::main->mLogin.controller->isAuthenticated())
 		Manager::main->mLogin.view->show();
+	else if (!manager->controller->getClients().size())
+	{
+		Manager::main->mLogin.view->show();
+		mAlert->show();
+	}
 	else
 		show();
 }

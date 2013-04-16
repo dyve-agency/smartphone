@@ -6,6 +6,8 @@
 #include <NativeUI/Widgets.h>
 #include <MAHeaders.h>
 
+#include "../utils/Alert.h"
+
 namespace Manager
 {
 	class Client;
@@ -22,6 +24,7 @@ namespace View
 			NativeUI::Image* mLogo;
 			NativeUI::Label* mInstructions;
 			NativeUI::ListView* mClientList;
+			Utils::Alert* mAlert;
 
 			MAUtil::Vector<NativeUI::ListViewItem*> mClients;
 			unsigned int mSelectedClient;
@@ -30,6 +33,7 @@ namespace View
 			static const char* mInstructionsText;
 			static const unsigned int mInstructionsFontColor;
 			static const unsigned int mClientListFontColor;
+			static const char* mAlertNoClientsText;
 
 			void createUI();
 
