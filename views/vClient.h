@@ -24,7 +24,7 @@ namespace View
 			NativeUI::Image* mLogo;
 			NativeUI::Label* mInstructions;
 			NativeUI::ListView* mClientList;
-			Utils::Alert* mAlert;
+			Utils::Alert* mAlertBox;
 
 			MAUtil::Vector<NativeUI::ListViewItem*> mClients;
 			unsigned int mSelectedClient;
@@ -33,7 +33,7 @@ namespace View
 			static const char* mInstructionsText;
 			static const unsigned int mInstructionsFontColor;
 			static const unsigned int mClientListFontColor;
-			static const char* mAlertNoClientsText;
+			static const char* mAlertBoxNoClientsLabel;
 
 			void createUI();
 
