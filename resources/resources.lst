@@ -1,2 +1,4 @@
 .res ZEITKIT_LOGO
 .image "zeitkit.png"
+.res SEPARATOR_LINE
+.image "separator.png"

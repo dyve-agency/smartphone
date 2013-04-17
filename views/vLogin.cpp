@@ -5,7 +5,9 @@
 using namespace View;
 using namespace NativeUI;
 
-const unsigned int Login::mMainLayoutBgColor = 0x00EC5A47;
+const unsigned int Login::mMainLayoutBgColor = 0x00333333;
+const unsigned int Login::mLogoWidth = 143;
+const unsigned int Login::mLogoHeight = 37;
 const char* Login::mInstructionsText = "Welcome to Zeitkit worklog tracker! Enter your login details below. If you don't have an account with us, our system will create one for you.";
 const unsigned int Login::mInstructionsFontColor = 0x00FFFFFF;
 const char* Login::mStatusText = "";
@@ -43,9 +45,16 @@ void Login::createUI()
 
 	mLogo = new Image();
 	mLogo->setImage(ZEITKIT_LOGO);
-	mLogo->fillSpaceHorizontally();
-	mLogo->setScaleMode(IMAGE_SCALE_PRESERVE_ASPECT);
+	mLogo->setWidth(mLogoWidth);
+	mLogo->setHeight(mLogoHeight);
+	mLogo->setScaleMode(IMAGE_SCALE_XY);
 	mMainLayout->addChild(mLogo);
+
+	mSeparator = new Image();
+	mSeparator->setImage(SEPARATOR_LINE);
+	mSeparator->fillSpaceHorizontally();
+	mSeparator->setScaleMode(IMAGE_SCALE_XY);
+	mMainLayout->addChild(mSeparator);
 
 	mInstructions = new Label();
 	mInstructions->fillSpaceHorizontally();

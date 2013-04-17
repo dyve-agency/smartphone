@@ -20,6 +20,7 @@ namespace View
 
 			NativeUI::VerticalLayout* mMainLayout;
 			NativeUI::Image* mLogo;
+			NativeUI::Image* mSeparator;
 			NativeUI::Label* mInstructions;
 			NativeUI::Label* mStatus;
 			NativeUI::EditBox* mMailBox;
@@ -27,6 +28,8 @@ namespace View
 			NativeUI::Button* mSubmitButton;
 
 			static const unsigned int mMainLayoutBgColor;
+			static const unsigned int mLogoWidth;
+			static const unsigned int mLogoHeight;
 			static const char* mInstructionsText;
 			static const unsigned int mInstructionsFontColor;
 			static const char* mStatusText;

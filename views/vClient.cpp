@@ -5,10 +5,14 @@
 using namespace View;
 using namespace NativeUI;
 
-const unsigned int Client::mMainLayoutBgColor = 0x00EC5A47;
+const unsigned int Client::mMainLayoutBgColor = 0x00333333;
+const unsigned int Client::mLogoWidth = 143;
+const unsigned int Client::mLogoHeight = 37;
 const char* Client::mInstructionsText = "Select a client below.";
 const unsigned int Client::mInstructionsFontColor = 0x00FFFFFF;
 const unsigned int Client::mClientListFontColor = 0x00FFFFFF;
+const float Client::mClientListItemFontSize = 28.0;
+const unsigned int Client::mClientListItemHeight = 80;
 const char* Client::mAlertBoxNoClientsLabel = "You have not yet created a client. Please do so on zeitkit.com first.\n";
 
 Client::Client(Manager::Client* manager) : manager(manager), mSelectedClient(0), Screen()
@@ -36,9 +40,16 @@ void Client::createUI()
 
 	mLogo = new Image();
 	mLogo->setImage(ZEITKIT_LOGO);
-	mLogo->fillSpaceHorizontally();
-	mLogo->setScaleMode(IMAGE_SCALE_PRESERVE_ASPECT);
+	mLogo->setWidth(mLogoWidth);
+	mLogo->setHeight(mLogoHeight);
+	mLogo->setScaleMode(IMAGE_SCALE_XY);
 	mMainLayout->addChild(mLogo);
+
+	mSeparator = new Image();
+	mSeparator->setImage(SEPARATOR_LINE);
+	mSeparator->fillSpaceHorizontally();
+	mSeparator->setScaleMode(IMAGE_SCALE_XY);
+	mMainLayout->addChild(mSeparator);
 
 	mInstructions = new Label();
 	mInstructions->fillSpaceHorizontally();
@@ -81,6 +92,8 @@ void Client::show()
 		item->setData(reinterpret_cast<void*>(it2->id));
 		item->setText(it2->name);
 		item->setFontColor(mClientListFontColor);
+		item->setHeight(mClientListItemHeight);
+		item->setFontSize(mClientListItemFontSize);
 		mClientList->addChild(item);
 		mClients.add(item);
 	}

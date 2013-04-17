@@ -22,6 +22,7 @@ namespace View
 
 			NativeUI::VerticalLayout* mMainLayout;
 			NativeUI::Image* mLogo;
+			NativeUI::Image* mSeparator;
 			NativeUI::Label* mInstructions;
 			NativeUI::ListView* mClientList;
 			Utils::Alert* mAlertBox;
@@ -30,9 +31,13 @@ namespace View
 			unsigned int mSelectedClient;
 
 			static const unsigned int mMainLayoutBgColor;
+			static const unsigned int mLogoWidth;
+			static const unsigned int mLogoHeight;
 			static const char* mInstructionsText;
 			static const unsigned int mInstructionsFontColor;
 			static const unsigned int mClientListFontColor;
+			static const float mClientListItemFontSize;
+			static const unsigned int mClientListItemHeight;
 			static const char* mAlertBoxNoClientsLabel;
 
 			void createUI();

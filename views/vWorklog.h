@@ -88,6 +88,7 @@ namespace View
 
 			NativeUI::VerticalLayout* mMainLayout;
 			NativeUI::Image* mLogo;
+			NativeUI::Image* mSeparator;
 			NativeUI::Label* mInstructions;
 			NativeUI::Button* mClientButton;
 			NativeUI::Button* mTrackerButton;
@@ -100,6 +101,8 @@ namespace View
 			Utils::Alert* mAlertBox;
 
 			static const unsigned int mMainLayoutBgColor;
+			static const unsigned int mLogoWidth;
+			static const unsigned int mLogoHeight;
 			static const char* mInstructionsText;
 			static const unsigned int mInstructionsFontColor;
 			static const char* mClientButtonLabel;

@@ -5,7 +5,9 @@
 using namespace View;
 using namespace NativeUI;
 
-const unsigned int Worklog::mMainLayoutBgColor = 0x00EC5A47;
+const unsigned int Worklog::mMainLayoutBgColor = 0x00333333;
+const unsigned int Worklog::mLogoWidth = 143;
+const unsigned int Worklog::mLogoHeight = 37;
 const char* Worklog::mInstructionsText = "Create a new worklog for ";
 const unsigned int Worklog::mInstructionsFontColor = 0x00FFFFFF;
 const char* Worklog::mClientButtonLabel = "Change client";
@@ -71,9 +73,16 @@ void Worklog::createUI()
 
 	mLogo = new Image();
 	mLogo->setImage(ZEITKIT_LOGO);
-	mLogo->fillSpaceHorizontally();
-	mLogo->setScaleMode(IMAGE_SCALE_PRESERVE_ASPECT);
+	mLogo->setWidth(mLogoWidth);
+	mLogo->setHeight(mLogoHeight);
+	mLogo->setScaleMode(IMAGE_SCALE_XY);
 	mMainLayout->addChild(mLogo);
+
+	mSeparator = new Image();
+	mSeparator->setImage(SEPARATOR_LINE);
+	mSeparator->fillSpaceHorizontally();
+	mSeparator->setScaleMode(IMAGE_SCALE_XY);
+	mMainLayout->addChild(mSeparator);
 
 	mInstructions = new Label();
 	mInstructions->fillSpaceHorizontally();
