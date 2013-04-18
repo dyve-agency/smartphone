@@ -8,7 +8,7 @@ using namespace NativeUI;
 const unsigned int Login::mMainLayoutBgColor = 0x00333333;
 const unsigned int Login::mLogoWidth = 143;
 const unsigned int Login::mLogoHeight = 37;
-const char* Login::mInstructionsText = "Welcome to Zeitkit worklog tracker! Enter your login details below. If you don't have an account with us, our system will create one for you.";
+const char* Login::mInstructionsText = "If you have an account, please login. If you are new, get started by entering email/password - we will then create an account for you.";
 const unsigned int Login::mInstructionsFontColor = 0x00FFFFFF;
 const char* Login::mStatusText = "";
 const unsigned int Login::mStatusFontColor = 0x00205081;

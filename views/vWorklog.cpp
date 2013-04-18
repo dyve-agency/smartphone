@@ -14,11 +14,11 @@ const char* Worklog::mClientButtonLabel = "Change client";
 const char* Worklog::mTrackerButtonLabel = "Stop tracking";
 const char* Worklog::mStartTimeBoxPlaceholder = "Start time";
 const char* Worklog::mEndTimeBoxPlaceholder = "End time";
-const char* Worklog::mReasonBoxPlaceholder = "The reason, e.g. \"Finish feature 1.\"";
+const char* Worklog::mReasonBoxPlaceholder = "What did you do?\n* finish feature 1\n* fix bug 2\n* fix computer problem: restart";
 const char* Worklog::mSubmitButtonLabel = "Submit this worklog";
-const char* Worklog::mAlertBoxSuccessLabel = "Worklog has been successfully submitted!\n";
+const char* Worklog::mAlertBoxSuccessLabel = "Worklog has been successfully submitted!\nView a full list on Zeitkit.com.\n";
 const char* Worklog::mAlertBoxFailureLabel = "Oops, something went wrong. Sorry!\n";
-const char* Worklog::mAlertBoxTimeErrorLabel = "The end time must not match the start time!\n";
+const char* Worklog::mAlertBoxTimeErrorLabel = "The end time time must be greater than the start time!\n";
 
 const char* Worklog::Dialog::mSubmitButtonLabel = "OK";
 
