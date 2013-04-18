@@ -63,7 +63,7 @@ namespace View
 
 						NativeUI::Date date;
 						date.day = now.getDay();
-						date.month = now.getMonth();
+						date.month = now.getMonth() + 1;
 						date.year = now.getYear() + 1900;
 
 						setDate(date);
