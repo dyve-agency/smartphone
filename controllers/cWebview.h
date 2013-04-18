@@ -18,6 +18,9 @@ namespace Controller
 
 			static const char* qCreateClient;
 			static const char* qRegister;
+			static const char* qDemo;
+
+			void setHooks();
 
 		public:
 			Webview(Manager::Webview* manager);

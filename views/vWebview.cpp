@@ -54,3 +54,8 @@ void Webview::webViewContentLoading(WebView* webView, const int webViewState)
 		}
 	}
 }
+
+void Webview::webViewHookInvoked(WebView* webView, int hookType, MAHandle urlData)
+{
+
+}

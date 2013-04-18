@@ -6,6 +6,7 @@ using namespace Controller;
 
 const char* Webview::qCreateClient = "clients/new";
 const char* Webview::qRegister = "signup";
+const char* Webview::qDemo = "signup_email";
 
 Webview::Webview(Manager::Webview* manager) : manager(manager)
 {
@@ -15,6 +16,11 @@ Webview::Webview(Manager::Webview* manager) : manager(manager)
 Webview::~Webview()
 {
 
+}
+
+void Webview::setHooks()
+{
+	//manager->view->setHardHook("http://.*");
 }
 
 MAUtil::String Webview::pageCreateClient()
@@ -29,6 +35,8 @@ MAUtil::String Webview::pageRegister()
 
 void Webview::actionCreateClient()
 {
+	setHooks();
+
 	const MAUtil::String& auth_token = Manager::main->mLogin.controller->getAuthToken();
 
 	MAUtil::String request = pageCreateClient();
@@ -42,6 +50,8 @@ void Webview::actionCreateClient()
 
 void Webview::actionRegister()
 {
+	setHooks();
+
 	MAUtil::String request = pageRegister();
 
 	manager->view->openURL(request);
