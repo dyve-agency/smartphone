@@ -16,6 +16,7 @@ class ZeitkitTimer : public MAUtil::Moblet
 		Manager::Worklog mWorklog;
 		Manager::Client mClient;
 		Manager::Login mLogin;
+		Manager::Webview mWebview;
 
 		ZeitkitTimer()
 		{
@@ -37,6 +38,7 @@ class ZeitkitTimer : public MAUtil::Moblet
 			mLogin.free();
 			mClient.free();
 			mWorklog.free();
+			mWebview.free();
 			close();
 		}
 

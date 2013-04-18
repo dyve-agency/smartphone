@@ -13,7 +13,7 @@ const unsigned int Client::mInstructionsFontColor = 0x00FFFFFF;
 const unsigned int Client::mClientListFontColor = 0x00FFFFFF;
 const float Client::mClientListItemFontSize = 28.0;
 const unsigned int Client::mClientListItemHeight = 80;
-const char* Client::mAlertBoxNoClientsLabel = "You have not yet created a client. Please do so on zeitkit.com first.\n";
+const char* Client::mAlertBoxNoClientsLabel = "You have not yet created a client. Please do so now.\n";
 
 Client::Client(Manager::Client* manager) : manager(manager), mSelectedClient(0), Screen()
 {
@@ -108,8 +108,8 @@ void Client::callbackClients()
 		Manager::main->mLogin.view->show();
 	else if (!manager->controller->getClients().size())
 	{
-		Manager::main->mLogin.view->show();
 		mAlertBox->show();
+		Manager::main->mWebview.controller->actionCreateClient();
 	}
 	else
 		show();

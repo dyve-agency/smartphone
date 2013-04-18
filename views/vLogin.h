@@ -26,6 +26,7 @@ namespace View
 			NativeUI::EditBox* mMailBox;
 			NativeUI::EditBox* mPasswordBox;
 			NativeUI::Button* mSubmitButton;
+			NativeUI::Button* mRegisterButton;
 
 			static const unsigned int mMainLayoutBgColor;
 			static const unsigned int mLogoWidth;
@@ -39,6 +40,7 @@ namespace View
 			static const char* mSubmitButtonLabel;
 			static const char* mSubmitButtonErrorMissingMail;
 			static const char* mSubmitButtonErrorMissingPwd;
+			static const char* mRegisterButtonLabel;
 
 			void createUI();
 

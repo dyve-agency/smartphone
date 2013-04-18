@@ -8,15 +8,16 @@ using namespace NativeUI;
 const unsigned int Login::mMainLayoutBgColor = 0x00333333;
 const unsigned int Login::mLogoWidth = 143;
 const unsigned int Login::mLogoHeight = 37;
-const char* Login::mInstructionsText = "If you have an account, please login. If you are new, get started by entering email/password - we will then create an account for you.";
+const char* Login::mInstructionsText = "If you have an account, please login. If you are new, get started by creating an account.";
 const unsigned int Login::mInstructionsFontColor = 0x00FFFFFF;
 const char* Login::mStatusText = "";
 const unsigned int Login::mStatusFontColor = 0x00205081;
 const char* Login::mMailBoxPlaceholder = "Your email here";
 const char* Login::mPasswordBoxPlaceholder = "Your password here";
-const char* Login::mSubmitButtonLabel = "Start now";
+const char* Login::mSubmitButtonLabel = "Login";
 const char* Login::mSubmitButtonErrorMissingMail = "Please enter your e-mail address!";
 const char* Login::mSubmitButtonErrorMissingPwd = "Please enter your password!";
+const char* Login::mRegisterButtonLabel = "Create account";
 
 Login::Login(Manager::Login* manager) : manager(manager), Screen()
 {
@@ -25,6 +26,7 @@ Login::Login(Manager::Login* manager) : manager(manager), Screen()
 	mSubmitButton->addButtonListener(this);
 	mMailBox->addEditBoxListener(this);
 	mPasswordBox->addEditBoxListener(this);
+	mRegisterButton->addButtonListener(this);
 }
 
 Login::~Login()
@@ -32,6 +34,7 @@ Login::~Login()
 	mSubmitButton->removeButtonListener(this);
 	mMailBox->removeEditBoxListener(this);
 	mPasswordBox->removeEditBoxListener(this);
+	mRegisterButton->removeButtonListener(this);
 }
 
 void Login::createUI()
@@ -91,6 +94,14 @@ void Login::createUI()
 	mSubmitButton->setTextVerticalAlignment(MAW_ALIGNMENT_CENTER);
 	mSubmitButton->setText(mSubmitButtonLabel);
 	mMainLayout->addChild(mSubmitButton);
+
+	mRegisterButton = new Button();
+	mRegisterButton->fillSpaceHorizontally();
+	mRegisterButton->wrapContentVertically();
+	mRegisterButton->setTextHorizontalAlignment(MAW_ALIGNMENT_CENTER);
+	mRegisterButton->setTextVerticalAlignment(MAW_ALIGNMENT_CENTER);
+	mRegisterButton->setText(mRegisterButtonLabel);
+	mMainLayout->addChild(mRegisterButton);
 }
 
 void Login::buttonClicked(Widget* button)
@@ -119,6 +130,8 @@ void Login::buttonClicked(Widget* button)
 
 		manager->controller->actionSubmit(mail, pwd);
 	}
+	else if (button == mRegisterButton)
+		Manager::main->mWebview.controller->actionRegister();
 }
 
 void Login::editBoxReturn(EditBox* editBox)

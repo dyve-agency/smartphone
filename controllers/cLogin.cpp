@@ -11,7 +11,7 @@ Login::Login(Manager::Login* manager) : manager(manager), mHttp(this)
 {
 	MAHandle zeitstore = maOpenStore("ZeitkitTimer", 0);
 
-	if (zeitstore != STERR_NONEXISTENT)
+	if (false && zeitstore != STERR_NONEXISTENT)
 	{
 		MAHandle authdata = maCreatePlaceholder();
 

@@ -10,6 +10,9 @@
 #include "controllers/cClient.h"
 #include "views/vClient.h"
 
+#include "controllers/cWebview.h"
+#include "views/vWebview.h"
+
 class ZeitkitTimer;
 
 namespace Manager
@@ -47,6 +50,17 @@ namespace Manager
 
 			Controller::Client* controller;
 			View::Client* view;
+	};
+
+	class Webview
+	{
+		public:
+			Webview() : view(new View::Webview(this)), controller(new Controller::Webview(this)) {}
+			~Webview() { free(); }
+			void free() { delete controller; delete view; controller = NULL; view = NULL; }
+
+			Controller::Webview* controller;
+			View::Webview* view;
 	};
 }
 
