@@ -30,7 +30,12 @@ MAUtil::String Webview::pageCreateClient()
 
 MAUtil::String Webview::pageRegister()
 {
-	return MAUtil::String(Manager::main->host) + "/" + qRegister;
+	char OS[64] = {0};
+	maGetSystemProperty("mosync.device.OS", OS, sizeof(OS));
+	for (char* p = OS; *p; ++p) *p = tolower(*p);
+	const char* OS_ = strstr(OS, "android") ? "android" : "ios";
+
+	return MAUtil::String(Manager::main->host) + "/" + qRegister + "?utm_source=" + OS_ + "&utm_medium=app&utm_term=not_registered&utm_content=zeitkit_app&utm_campaign=zeitkit_app";
 }
 
 void Webview::actionCreateClient()
