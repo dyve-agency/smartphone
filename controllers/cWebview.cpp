@@ -30,7 +30,7 @@ MAUtil::String Webview::pageCreateClient()
 
 MAUtil::String Webview::pageRegister()
 {
-	char OS[64] = {0};
+	char OS[256] = {0};
 	maGetSystemProperty("mosync.device.OS", OS, sizeof(OS));
 	for (char* p = OS; *p; ++p) *p = tolower(*p);
 	const char* OS_ = strstr(OS, "android") ? "android" : "ios";
