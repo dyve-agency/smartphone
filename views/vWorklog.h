@@ -108,7 +108,9 @@ namespace View
 			static const char* mClientButtonLabel;
 			static const char* mTrackerButtonLabel;
 			static const char* mStartTimeBoxPlaceholder;
+			static const unsigned int mStartTimeBoxPlaceholderFontColor;
 			static const char* mEndTimeBoxPlaceholder;
+			static const unsigned int mEndTimeBoxPlaceholderFontColor;
 			static const char* mReasonBoxPlaceholder;
 			static const char* mSubmitButtonLabel;
 			static const char* mAlertBoxSuccessLabel;

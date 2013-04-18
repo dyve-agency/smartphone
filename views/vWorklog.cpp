@@ -13,7 +13,9 @@ const unsigned int Worklog::mInstructionsFontColor = 0x00FFFFFF;
 const char* Worklog::mClientButtonLabel = "Change client";
 const char* Worklog::mTrackerButtonLabel = "Stop tracking";
 const char* Worklog::mStartTimeBoxPlaceholder = "Start time";
+const unsigned int Worklog::mStartTimeBoxPlaceholderFontColor = 0x00FFFFFF;
 const char* Worklog::mEndTimeBoxPlaceholder = "End time";
+const unsigned int Worklog::mEndTimeBoxPlaceholderFontColor = 0x00FFFFFF;
 const char* Worklog::mReasonBoxPlaceholder = "What did you do?\n* finish feature 1\n* fix bug 2\n* fix computer problem: restart";
 const char* Worklog::mSubmitButtonLabel = "Submit this worklog";
 const char* Worklog::mAlertBoxSuccessLabel = "Worklog has been successfully submitted!\nView a full list on Zeitkit.com.\n";
@@ -111,7 +113,7 @@ void Worklog::createUI()
 	mStartTimeBox->fillSpaceHorizontally();
 	mStartTimeBox->wrapContentVertically();
 	mStartTimeBox->setPlaceholder(mStartTimeBoxPlaceholder);
-	mStartTimeBox->setPlaceholderFontColor(0xffffff);
+	mStartTimeBox->setPlaceholderFontColor(mStartTimeBoxPlaceholderFontColor);
 	mStartTimeBox->setMaxLength(0);
 	mMainLayout->addChild(mStartTimeBox);
 
@@ -121,7 +123,7 @@ void Worklog::createUI()
 	mEndTimeBox->fillSpaceHorizontally();
 	mEndTimeBox->wrapContentVertically();
 	mEndTimeBox->setPlaceholder(mEndTimeBoxPlaceholder);
-	mEndTimeBox->setPlaceholderFontColor(0xffffff);
+	mEndTimeBox->setPlaceholderFontColor(mEndTimeBoxPlaceholderFontColor);
 	mEndTimeBox->setMaxLength(0);
 	mMainLayout->addChild(mEndTimeBox);
 
