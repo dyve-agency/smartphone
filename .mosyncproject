@@ -28,6 +28,7 @@
 <property key="build.prefs:app.name/Release" value="Zeitkit"/>
 <property key="build.prefs:app.permissions" value="Internet\ Access Vibration"/>
 <property key="build.prefs:app.vendor/Release" value="Zeitkit"/>
+<property key="build.prefs:app.version/Release" value="1.0.1"/>
 <property key="build.prefs:extra.link.sw/Debug" value=""/>
 <property key="build.prefs:extra.link.sw/Release" value=""/>
 <property key="build.prefs:extra.res.sw/Debug" value=""/>
