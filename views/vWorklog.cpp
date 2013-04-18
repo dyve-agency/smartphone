@@ -111,6 +111,7 @@ void Worklog::createUI()
 	mStartTimeBox->fillSpaceHorizontally();
 	mStartTimeBox->wrapContentVertically();
 	mStartTimeBox->setPlaceholder(mStartTimeBoxPlaceholder);
+	mStartTimeBox->setPlaceholderFontColor(0xffffff);
 	mStartTimeBox->setMaxLength(0);
 	mMainLayout->addChild(mStartTimeBox);
 
@@ -120,6 +121,7 @@ void Worklog::createUI()
 	mEndTimeBox->fillSpaceHorizontally();
 	mEndTimeBox->wrapContentVertically();
 	mEndTimeBox->setPlaceholder(mEndTimeBoxPlaceholder);
+	mEndTimeBox->setPlaceholderFontColor(0xffffff);
 	mEndTimeBox->setMaxLength(0);
 	mMainLayout->addChild(mEndTimeBox);
 
