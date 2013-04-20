@@ -61,6 +61,7 @@ void Client::createUI()
 	mClientList = new ListView();
 	mClientList->fillSpaceHorizontally();
 	mClientList->fillSpaceVertically();
+	mClientList->setBackgroundColor(mMainLayoutBgColor);
 	mMainLayout->addChild(mClientList);
 
 	mAlertBox = new Utils::Alert(mAlertBoxNoClientsLabel);
