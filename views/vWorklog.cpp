@@ -22,6 +22,7 @@ const char* Worklog::mAlertBoxSuccessLabel = "Worklog has been successfully subm
 const char* Worklog::mAlertBoxFailureLabel = "Oops, something went wrong. Sorry!\n";
 const char* Worklog::mAlertBoxTimeErrorLabel = "The end time time must be greater than the start time!\n";
 
+const char* Worklog::Dialog::mDialogTitle = "Select a time";
 const char* Worklog::Dialog::mSubmitButtonLabel = "OK";
 
 Worklog::Worklog(Manager::Worklog* manager) : manager(manager), Screen()
@@ -166,6 +167,7 @@ void Worklog::Dialog::createUI()
 {
 	mDialog = new NativeUI::Dialog();
 	mDialog->canBeDismissed(false);
+	mDialog->setTitle(mDialogTitle);
 
 	mMainLayout = new VerticalLayout();
 	mMainLayout->fillSpaceHorizontally();
@@ -189,6 +191,8 @@ void Worklog::Dialog::createUI()
 	mSubmitButton->setTextVerticalAlignment(MAW_ALIGNMENT_CENTER);
 	mSubmitButton->setText(mSubmitButtonLabel);
 	mMainLayout->addChild(mSubmitButton);
+
+	mMainLayout->setScrollable(true);
 }
 
 void Worklog::buttonClicked(Widget* button)

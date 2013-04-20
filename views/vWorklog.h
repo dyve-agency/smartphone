@@ -31,6 +31,7 @@ namespace View
 					NativeUI::TimePicker* mTimePicker;
 					NativeUI::Button* mSubmitButton;
 
+					static const char* mDialogTitle;
 					static const char* mSubmitButtonLabel;
 
 					void createUI();
